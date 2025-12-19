@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to AI: A Guide for AI Enthusiast ! </title>
+    <style>
+        /* Theme Variables */
+        :root {
+            --font-family-display: 'Segoe UI', Arial, sans-serif;
+            --font-weight-display: 600;
+            --font-family-content: 'Segoe UI', Arial, sans-serif;
+            --font-weight-content: 400;
+            --font-size-content: 16px;
+            --line-height-content: 1.4;
+        }
+
+        /* DARK THEME */
+        body.theme-dark {
+            --color-bg-base: #0f172a;
+            --color-bg-elevated: #020617;
+            --color-bg-surface: #1e293b;
+            --color-bg-muted: #334155;
+            --color-text-primary: #f1f5f9;
+            --color-text-secondary: #cbd5e1;
+            --color-text-muted: #94a3b8;
+            --color-text-accent: #38bdf8;
+            --color-primary: #38bdf8;
+            --color-primary-foreground: #0f172a;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-content);
+            font-weight: var(--font-weight-content);
+            font-size: var(--font-size-content);
+            line-height: var(--line-height-content);
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slide {
+            width: 960px;
+            height: 540px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Layout Utilities */
+        .row { flex-direction: row; }
+        .col { flex-direction: column; }
+        .center {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .space-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .fill-width { flex: 1; }
+        .fill-height { flex: 1; display: flex; flex-direction: column; }
+        .gap-md { gap: 1rem; }
+        .gap-lg { gap: 1.5rem; }
+
+        /* Spacing */
+        .p-8 { padding: 2rem; }
+        .p-12 { padding: 3rem; }
+        .p-16 { padding: 4rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-display);
+            font-weight: var(--font-weight-display);
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+
+        .text-6xl { font-size: 3.75rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-base { font-size: 1rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+
+        .text-center { text-align: center; }
+        .font-semibold { font-weight: 600; }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            line-height: 1.8;
+        }
+        li { margin-bottom: 0.75rem; }
+        li:last-child { margin-bottom: 0; }
+
+        /* Image Styles */
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(2, 6, 23, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .overlay-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Card Styles */
+        .card-rect {
+            padding: 1.5rem;
+            background-color: #1e293b;
+            color: #f1f5f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+        /* Image inset styles */
+        .inset-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .small-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin: 0 auto 0.5rem;
+        }
+    </style>
+</head>
+<body class="theme-dark">
+
+    <!-- Slide 1: Title Slide -->
+    <section class="slide p-16 col center" style="background: url('https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/12e433e9cbd009e1b8006a4d187417f46dde0ed3.jpg') center/cover; position: relative;">
+        <div class="image-overlay"></div>
+        <div class="overlay-content">
+            <h1 class="text-5xl mb-4" style="color: #38bdf8;">Introduction to AI</h1>
+            <h2 class="text-3xl mb-6" style="color: #cbd5e1;">A Guide for Travel & Tourism Leaders</h2>
+            <p class="text-lg" style="color: #cbd5e1;">Navigating the Transformative Leap in Human Endeavor</p>
+        </div>
+    </section>
+
+    <!-- Slide 2: The Foreword: Why AI Matters Now -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Why AI Matters Now</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">AI is no longer a futuristic concept</span> – it is a transformative technology that caught global attention in 2023.
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    Our objective: Help business leaders understand opportunities for personalized, seamless, and sustainable travel experiences.
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/669306684771273584e8ad50e90f351b5c5e7da0.jpg" alt="Connected Global Cityscape" class="slide-image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: A Brief History of "Thinking Machines" -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-6" style="color: #38bdf8;">A Brief History of "Thinking Machines"</h2>
+        <div class="fill-height">
+            <ul class="text-lg" style="color: #cbd5e1;">
+                <li><span style="color: #38bdf8;">1956:</span> The term "Artificial Intelligence" is coined at the Dartmouth Conference</li>
+                <li><span style="color: #38bdf8;">1997:</span> IBM Deep Blue beats a chess champion</li>
+                <li><span style="color: #38bdf8;">2011:</span> IBM Watson wins Jeopardy!</li>
+                <li><span style="color: #38bdf8;">2018:</span> AI-generated art begins selling at Christie's auction house</li>
+            </ul>
+            <p class="text-sm mt-8" style="color: #94a3b8;">2023: AI featured as lead story across Time, Science, and The Economist</p>
+        </div>
+    </section>
+
+    <!-- Slide 4: The 2023 Catalyst: ChatGPT -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">The 2023 Catalyst: ChatGPT</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-xl mb-4" style="color: #38bdf8; font-weight: 600;">Mass Adoption</p>
+                <p class="text-lg mb-6" style="color: #cbd5e1;">ChatGPT reached <span style="color: #38bdf8;">100 million users in just 2 months</span> – the fastest-growing consumer product ever.</p>
+                <p class="text-xl mb-4" style="color: #38bdf8; font-weight: 600;">Mainstream Access</p>
+                <p class="text-lg" style="color: #cbd5e1;">Unlike the supercomputers of the 90s, modern AI is accessible via smartphones and the cloud.</p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1764591521/search_images/d1085715663a0004840d3b18142e90117f57ab5b.jpg" alt="ChatGPT Interface" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: The Three Core Elements of AI -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">The Three Core Elements of AI</h2>
+        <div class="fill-height grid-3">
+            <div class="card-rect" style="text-align: center;">
+                <p style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧠</p>
+                <h3 style="color: #38bdf8; margin-bottom: 0.5rem;">Algorithms</h3>
+                <p style="color: #cbd5e1;">The "Brains" that tell computers what to do</p>
+            </div>
+            <div class="card-rect" style="text-align: center;">
+                <p style="font-size: 2.5rem; margin-bottom: 0.5rem;">⛽</p>
+                <h3 style="color: #38bdf8; margin-bottom: 0.5rem;">Data</h3>
+                <p style="color: #cbd5e1;">The "Fuel" that tells computers what to learn</p>
+            </div>
+            <div class="card-rect" style="text-align: center;">
+                <p style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</p>
+                <h3 style="color: #38bdf8; margin-bottom: 0.5rem;">Computing Power</h3>
+                <p style="color: #cbd5e1;">The "Machines" that provide the power</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Algorithms: From Rules to Learning -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Algorithms: From Rules to Learning</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-4" style="color: #38bdf8; font-weight: 600;">Traditional Programming</p>
+                <p class="text-base mb-6" style="color: #cbd5e1;">Uses "IF-THEN-ELSE" rules (e.g., if fever, then prescribe Drug X)</p>
+                <p class="text-lg mb-4" style="color: #38bdf8; font-weight: 600;">AI Approach</p>
+                <p class="text-base" style="color: #cbd5e1;">Systems "learn" from training data to calculate the best route to an outcome without explicit step-by-step coding</p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/44a5064c6b9ffa9e587a6687b1b43d6217ab9577.jpg" alt="Machine Learning" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: The "Black Box" vs. "Glass Box" -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">The "Black Box" vs. "Glass Box"</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">The Challenge:</span> It isn't always possible to know exactly how an AI reached a decision.
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Explainable AI:</span> A field dedicated to making AI decisions transparent – turning a "black box" into a "glass box".
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/1dab7adeaa7033ef697c67fefb19013c63a825b9.jpg" alt="Explainable AI" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: Data: The Fuel Driving Innovation -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Data: The Fuel Driving Innovation</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">The Explosion:</span> 90% of the world's data was generated in just the last two years.
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Scale by 2025:</span> Global data production will reach <span style="color: #38bdf8;">175 zettabytes</span> – equivalent to 21 laptops for every person on Earth.
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/1f30e7098b9f941c71a6adff7a378de4c4229a32.jpg" alt="Big Data Streams" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Big Data & The 4 V's -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Big Data & The 4 V's</h2>
+        <div class="fill-height grid-3">
+            <div class="card-rect" style="text-align: center;">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Volume</h4>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">Massive quantities of information</p>
+            </div>
+            <div class="card-rect" style="text-align: center;">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Velocity</h4>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">Incredible speed of data production</p>
+            </div>
+            <div class="card-rect" style="text-align: center;">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Variety</h4>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">Text, images, video formats</p>
+            </div>
+            <div class="card-rect" style="text-align: center; grid-column: 2;">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Veracity</h4>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">Ensuring accuracy & reliability</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Managing Big Data: Lakes and Warehouses -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Managing Big Data: Lakes and Warehouses</h2>
+        <div class="fill-height row gap-lg items-start">
+            <div class="fill-width">
+                <p class="text-lg mb-4" style="color: #38bdf8; font-weight: 600;">Data Warehouse</p>
+                <p class="text-base mb-6" style="color: #cbd5e1;">Structured, neatly organized "filing cabinets" (e.g., booking rates)</p>
+                <p class="text-lg mb-4" style="color: #38bdf8; font-weight: 600;">Data Lake</p>
+                <p class="text-base mb-6" style="color: #cbd5e1;">Unstructured, open repositories for diverse data (e.g., social media posts)</p>
+                <p class="text-lg mb-4" style="color: #38bdf8; font-weight: 600;">Data Lakehouse</p>
+                <p class="text-base" style="color: #cbd5e1;">A hybrid solution offering the best of both</p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1765605090/search_images/14443f71b5ff840f28a7edaf2ef215b0c4cf1f5b.jpg" alt="Data Lake vs Warehouse" class="slide-image" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 11: Computing Power: The Machines Behind AI -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Computing Power: The Machines Behind AI</h2>
+        <div class="fill-height">
+            <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="card-rect" style="text-align: center;">
+                    <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">GPU</h4>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">Parallel Processing – Originally for gaming, now essential for AI</p>
+                </div>
+                <div class="card-rect" style="text-align: center;">
+                    <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">TPU</h4>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">Matrix Processing – Google's AI-specific chip</p>
+                </div>
+                <div class="card-rect" style="text-align: center;">
+                    <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Supercomputers</h4>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;">Microsoft's ChatGPT system: 10,000 GPUs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 12: The Geopolitics of AI Chips -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">The Geopolitics of AI Chips</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Critical Dependence:</span> 70% of the world's chips are manufactured by just <span style="color: #38bdf8;">TSMC and Samsung</span>
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Strategic Investment:</span> Major powers (US, EU, China) are investing billions to secure local supply chains.
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130228/search_images/4c1b3b5c04fc4f11b5366537c3b8c7eaa1b1f231.jpg" alt="Semiconductor Chips" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 13: Classifying AI: Capabilities -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Classifying AI: Capabilities</h2>
+        <div class="fill-height grid-3">
+            <div class="card-rect">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">ANI (Narrow)</h4>
+                <p style="color: #cbd5e1;">Designed for one specific task (e.g., spam filters). This is the most common AI today.</p>
+            </div>
+            <div class="card-rect">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">AGI (General)</h4>
+                <p style="color: #cbd5e1;">Theoretical AI that rivals human intelligence across all areas.</p>
+            </div>
+            <div class="card-rect">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">ASI (Super)</h4>
+                <p style="color: #cbd5e1;">Hypothetical AI that exceeds human intelligence (linked to "Singularity").</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 14: Functionality: AI Expert Systems -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Functionality: AI Expert Systems</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Role:</span> Simulates human expertise in a specific area, like travel planning.
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Mechanism:</span> Combines a <span style="color: #38bdf8;">Knowledge Base</span> (facts) with an <span style="color: #38bdf8;">Inference Engine</span> (AI brain).
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1763936704/search_images/180252d1e29e9b98dc16b71acf5854209b3f280c.jpg" alt="Travel AI Assistant" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 15: Functionality: Predictive AI -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Functionality: Predictive AI</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Purpose:</span> Uses historical data to forecast the future (e.g., flight delays, weather)
+                </p>
+                <p class="text-lg mb-4" style="color: #38bdf8; font-weight: 600;">Analytics Types</p>
+                <ul style="color: #cbd5e1; font-size: 1rem;">
+                    <li><span style="color: #38bdf8;">Descriptive:</span> What happened?</li>
+                    <li><span style="color: #38bdf8;">Diagnostic:</span> Why did it happen?</li>
+                    <li><span style="color: #38bdf8;">Prescriptive:</span> How should we act?</li>
+                </ul>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/1dab7adeaa7033ef697c67fefb19013c63a825b9.jpg" alt="Predictive Analytics" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 16: The Rise of Generative AI -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">The Rise of Generative AI</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Capability:</span> Can produce new content (text, images, audio) from a user "prompt".
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Foundation Models:</span> AI trained on broad datasets applicable to many tasks – from code generation to video editing.
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/fe8d3541f11e8e05e552af4cfa7d194e6d2d5502.jpg" alt="Generative AI" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 17: Large Language Models (LLMs) -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Large Language Models (LLMs)</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Mechanism:</span> Designed to understand and generate human-like text by learning patterns from massive document collections.
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Power:</span> Can translate languages, summarize reports, and draw complex data tables in seconds.
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/beff46ba4c7b1d6c99552d5374086511718a7696.jpg" alt="LLM Chatbot" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 18: Prompt Engineering & Hallucinations -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Prompt Engineering & Hallucinations</h2>
+        <div class="fill-height grid-3">
+            <div class="card-rect">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Prompting</h4>
+                <p style="color: #cbd5e1;">The art of providing clear instructions to guide AI output.</p>
+            </div>
+            <div class="card-rect">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Hallucinations</h4>
+                <p style="color: #cbd5e1;">A feature where AI produces convincing but incorrect information.</p>
+            </div>
+            <div class="card-rect">
+                <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Action Required</h4>
+                <p style="color: #cbd5e1;">Business leaders must verify AI outputs for critical operations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 19: The Global Digital Divide -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">The Global Digital Divide</h2>
+        <div class="fill-height row gap-lg items-center">
+            <div class="fill-width">
+                <p class="text-lg mb-6" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">The Gap:</span> <span style="color: #38bdf8;">34% of the world</span> (2.6 billion people) has never been connected to the internet.
+                </p>
+                <p class="text-lg" style="color: #cbd5e1;">
+                    <span style="color: #38bdf8; font-weight: 600;">Risk:</span> The AI revolution could worsen international inequality if not shared globally.
+                </p>
+            </div>
+            <div class="fill-width" style="text-align: center;">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1766130225/search_images/be865f42d92b7f7d79d81394117c75261852e9d0.jpg" alt="Global Digital Divide" class="slide-image" style="width: 100%; height: 280px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 20: Closing the AI Skills Gap -->
+    <section class="slide p-16 col" style="background-color: #0f172a; color: #f1f5f9;">
+        <h2 class="mb-8" style="color: #38bdf8;">Closing the AI Skills Gap</h2>
+        <div class="fill-height">
+            <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="card-rect" style="text-align: center;">
+                    <p style="font-size: 2rem; color: #38bdf8; margin-bottom: 0.5rem;">20x</p>
+                    <p style="color: #cbd5e1;">Increase in job postings requiring AI skills in 2023</p>
+                </div>
+                <div class="card-rect" style="text-align: center;">
+                    <p style="font-size: 2rem; color: #38bdf8; margin-bottom: 0.5rem;">13%</p>
+                    <p style="color: #cbd5e1;">Workers offered AI training</p>
+                </div>
+                <div class="card-rect" style="text-align: center;">
+                    <p style="font-size: 1.25rem; color: #38bdf8; margin-bottom: 0.5rem;">✓ Solution</p>
+                    <p style="color: #cbd5e1;">Upskilling through free resources & peer mentoring</p>
+                </div>
+            </div>
+            <p class="text-sm mt-6" style="color: #94a3b8; text-align: center; font-style: italic;">"Mere connectivity is not sufficient" – Doreen Bogdan-Martin, UN ITU Secretary General</p>
+        </div>
+    </section>
+
+</body>
+</html>
